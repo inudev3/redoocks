@@ -3,7 +3,7 @@ import { ToDosContext } from "./context";
 import { CANCEL, DELETE, EDIT, TOGGLE, UPDATE } from "./Actions"
 
 
-const ToDo = ({isComplete}) => {
+const ToDo = ({id, text, completed, isComplete}) => {
     const { state, dispatch } = useContext(ToDosContext);
     const [editing, setEditing] = useState();
   
@@ -16,25 +16,25 @@ const ToDo = ({isComplete}) => {
       e.preventDefault();
       dispatch({ type: UPDATE, payload: editing });
     }
-    const onCancel = function(e){
-            if (e.key === 'Escape') {
-                dispatch({ type: CANCEL });
-                setEditing(this.text);
-            }
-    }
     
     return (
+        
         <>
-            {state.toDos.map(toDo => (isComplete?(toDo.completed):(!toDo.completed))&&
-            (<li key={toDo.id}>{toDo.id === state.selected ?
+            {(isComplete?completed:!completed)&&
+            (<li key={id}>{id === state.selected ?
                 (<form onSubmit={onSubmitEditing}>
                     <input type="text" placeholder="edit" value={editing} onChange={onChangeEditing}
-                        onKeyDown={onCancel}/>
+                        onKeyDown={(e) => {
+                            if (e.key === 'Escape') {
+                                dispatch({ type: CANCEL });
+                                setEditing(text);
+                            }
+                        }}/>
                 </form>)
-                : <span onDoubleClick={(e) => dispatch({ type: EDIT, payload: toDo.id })}>{toDo.text}</span>}
-            <button onClick={(e) => dispatch({ type: DELETE, payload: toDo.id })}>❌</button>
-            <button onClick={(e) => dispatch({ type: TOGGLE, payload: toDo.id })}>✅</button>
-            </li>))}
+                : <span onDoubleClick={(e) => dispatch({ type: EDIT, payload: id })}>{text}</span>}
+            <button onClick={(e) => dispatch({ type: DELETE, payload: id })}>❌</button>
+            <button onClick={(e) => dispatch({ type: TOGGLE, payload: id })}>✅</button>
+            </li>)}
         </>
      )
 }
