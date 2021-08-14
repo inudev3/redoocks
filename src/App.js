@@ -1,9 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
-import {v4 as uuid} from "uuid";
 import Add from './Add';
-import ToDosProvider from './context';
-import  { ADD,  DELETE, EDIT,  TOGGLE, UPDATE } from './reducer';
+import List from "./List";
 import ToDo from './ToDo';
   
 
@@ -14,13 +11,13 @@ function App() {
 
   return (
         <>
-        <ToDosProvider>
          <Add/>
-        <h2>To Dos</h2>
-        <ToDo isComplete={false}/>
-        <h2>Completed ToDos</h2>
+        <List name="To Do">
+        <ToDo isComplete={false} />
+        </List>
+        <List name="Completed To Do">
         <ToDo isComplete={true}/>
-        </ToDosProvider>
+        </List>
         </>
     )
 

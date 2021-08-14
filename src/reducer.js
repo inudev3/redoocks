@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-
+import { ADD,DELETE, UPDATE, EDIT, TOGGLE, CANCEL } from './Actions';
 export const initialState = {
     toDos: [
       {
@@ -14,11 +14,7 @@ export const initialState = {
   
    
 }
-export const ADD = 'add';
-export const DELETE = 'delete';
-export const TOGGLE = 'toggle';
-export const EDIT = 'edit';
-export const UPDATE= 'update';
+
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -40,7 +36,9 @@ const reducer = (state, action) => {
             const newTodos = [...state.toDos];
             const newTodo = newTodos.find(item => item.id === selected)
             newTodo.text = action.payload;
-            return {toDos:newTodos, selected:-1 }
+            return { toDos: newTodos, selected: -1 }
+        case CANCEL:
+            return { ...state, selected: -1 };
         default:
             throw new Error();
     }

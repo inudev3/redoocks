@@ -4,8 +4,6 @@ import reducer,{initialState} from "./reducer";
 
 export const ToDosContext = createContext();
 
-
-
 const ToDosProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
     return (
