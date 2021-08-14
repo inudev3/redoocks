@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useState } from 'react';
-import { ToDosContext } from './context';
-import { ADD } from './Actions';
+import { ToDosContext } from '../context';
+import { ADD } from '../Actions';
 
 const Add = () => {
     const {state,dispatch} = useContext(ToDosContext);

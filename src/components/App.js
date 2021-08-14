@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Add from './Add';
-import { ToDosContext } from './context';
+import { ToDosContext } from '../context';
 import List from "./List";
 import ToDo from './ToDo';
   

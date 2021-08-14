@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { ToDosContext } from "./context";
-import { CANCEL, DELETE, EDIT, TOGGLE, UPDATE } from "./Actions"
+import { ToDosContext } from "../context";
+import { CANCEL, DELETE, EDIT, TOGGLE, UPDATE } from "../Actions"
 
 
 const ToDo = ({id, text, completed, isComplete}) => {
