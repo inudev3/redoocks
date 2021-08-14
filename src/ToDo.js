@@ -16,7 +16,12 @@ const ToDo = ({id, text, completed, isComplete}) => {
       e.preventDefault();
       dispatch({ type: UPDATE, payload: editing });
     }
-    
+    const onCancel = (e) => {
+        if (e.key === 'Escape') {
+            dispatch({ type: CANCEL });
+            setEditing(text);
+        }
+    }
     return (
         
         <>
@@ -24,12 +29,7 @@ const ToDo = ({id, text, completed, isComplete}) => {
             (<li key={id}>{id === state.selected ?
                 (<form onSubmit={onSubmitEditing}>
                     <input type="text" placeholder="edit" value={editing} onChange={onChangeEditing}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Escape') {
-                                dispatch({ type: CANCEL });
-                                setEditing(text);
-                            }
-                        }}/>
+                        onKeyDown={onCancel}/>
                 </form>)
                 : <span onDoubleClick={(e) => dispatch({ type: EDIT, payload: id })}>{text}</span>}
             <button onClick={(e) => dispatch({ type: DELETE, payload: id })}>❌</button>
