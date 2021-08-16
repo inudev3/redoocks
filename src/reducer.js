@@ -5,14 +5,11 @@ export const initialState = {
       {
         id: 1,
         text: 'hi',
-        completed: false,
-        selected: false,
+        completed: false
         
-      }
+        }
     ],
-   
-  
-   
+    selected:-1,
 }
 
 
